@@ -1,0 +1,47 @@
+def main():
+    pjh = []
+    fp = open('C:\Users\Min\pjh/score.csv','r')
+    lines = fp.readlines()
+    fp.close()
+    for line in lines:
+        line = line.strip()   
+        items = line.split(',')
+        jh = {}
+        jh['id'] = int(items[0])
+        jh['name'] = items[1]
+        jh['korean'] = int(items[2])
+        jh['english'] = int(items[3])
+        jh['math'] = int(items[4])
+        jh['total'] = 0
+        jh['avg'] = 0.0
+        jh['rank'] = 0
+        
+        pjh.append(gm)
+        
+    for jh in gmk:
+        jh['total'] = jh['korean'] + jh['english'] + jh['math'] 
+        jh['avg'] = jh['total'] / 3    
+           
+    sorted_pjh = sorted(pjh, key = lambda x : x['total'], reverse=True)
+
+    count = 1
+    for jh in sorted_gmk:
+        jh['rank'] = count
+        count = count + 1
+        
+    result_pjh = sorted(sorted_pjh, key = lambda x : x['id'])
+    
+    fp = open('C:\Users\Min\git\open_source_pjh/result_score.csv', 'w')
+    
+    for jh in result_gmk:
+        line = ','.join([str(jh['id']),str(jh['name']),str(jh['korean']),str(jh['english']),
+                         str(jh['math']),str(jh['total']),str(jh['avg']),str(jh['rank']),'\n'])
+        fp.write(line)
+        
+    fp.close()
+        
+    for jh in sorted_pjh:
+        print(jh) 
+     
+if __name__ == "__main__":
+    main()
